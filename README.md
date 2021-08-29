@@ -12,7 +12,7 @@ Every process maintains an internal set of loaded Modules/DLLs in the form of th
 - Initialization Order List
 
 ## How to use
-Open `CMD` and run.
+Open `CMD` and run
 ```- DLLHiding.exe <Process Name> <DLL Name>```
 
 Ex: DLLHiding.exe brave.exe test.dll
