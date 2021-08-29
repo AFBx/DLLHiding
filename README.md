@@ -15,7 +15,7 @@ Every process maintains an internal set of loaded Modules/DLLs in the form of th
 Open `CMD` and run
 ```- DLLHiding.exe <Process Name> <DLL Name>```
 
-Ex: DLLHiding.exe brave.exe test.dll
+Ex: ```DLLHiding.exe brave.exe test.dll```
 
 ## Limitations
 Should effectively hide modules from all user-mode applications. Applications with ring0/Kernel mode access can enumerate the hidden modules; such applications include Process Explorer as the Kernel Object remains unchanged. Additionally, user-mode applications can enumerate an application's memory using NtQueryVirtualMemory() and find the modules.
