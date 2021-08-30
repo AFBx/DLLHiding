@@ -17,14 +17,14 @@ std::wstring s2ws(const std::string& s) {
 
 int main(int argc, char* argv[]) {
 
-	tstring title = (xors("DLLHider 0.1"));
+	tstring title = (xorstr("DLLHider 0.1"));
 	SetConsoleTitle(title.c_str());
 
 	if (argc > 3 || argc <= 2) {
-		std::cout << (xors("\n"));
-		std::cout << (xors("Invalid arguments!\n")) << std::endl;
-		std::cout << (xors("DLLHiding.exe <Process Name> <DLL Name>\n")) << std::endl;
-		std::cout << (xors("Ex: ")) << (xors("DllHiding.exe brave.exe test.dll\n")) << std::endl;
+		std::cout << (xorstr("\n"));
+		std::cout << (xorstr("Invalid arguments!\n")) << std::endl;
+		std::cout << (xorstr("DLLHiding.exe <Process Name> <DLL Name>\n")) << std::endl;
+		std::cout << (xorstr("Ex: ")) << (xorstr("DllHiding.exe brave.exe test.dll\n")) << std::endl;
 		return 0;
 	}
 
@@ -34,11 +34,11 @@ int main(int argc, char* argv[]) {
 
 	Process* A = new Process(strNameProcess, wstrDLLName);
 
-	std::cout << (xors("Process Name: ")) << strNameProcess << " " << (xors("DLL Name: ")) << strDLLName << std::endl;
-	std::cout << "\n" << (xors("Status:")) << std::endl;
-	std::cout << "\t" << (xors("InLoadOrderModuleList: ")) << BoolToString(A->DLLInLoadStatus) << std::endl;
-	std::cout << "\t" << (xors("InMemoryOrderModuleList: ")) << BoolToString(A->DLLInMemStatus) << std::endl;
-	std::cout << "\t" << (xors("InInitializationOrderModuleList: ")) << BoolToString(A->DLLInInInitializationStatus) << std::endl;
+	std::cout << (xorstr("Process Name: ")) << strNameProcess << " " << (xorstr("DLL Name: ")) << strDLLName << std::endl;
+	std::cout << "\n" << (xorstr("Status:")) << std::endl;
+	std::cout << "\t" << (xorstr("InLoadOrderModuleList: ")) << BoolToString(A->DLLInLoadStatus) << std::endl;
+	std::cout << "\t" << (xorstr("InMemoryOrderModuleList: ")) << BoolToString(A->DLLInMemStatus) << std::endl;
+	std::cout << "\t" << (xorstr("InInitializationOrderModuleList: ")) << BoolToString(A->DLLInInInitializationStatus) << std::endl;
 
 	// print InLoadOrderModuleList in forward order
 	// A->ListModules(A->Pinfo.Process_ID, 0, 0);
