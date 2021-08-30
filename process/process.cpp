@@ -32,7 +32,7 @@ Process::Process_INFO Process::GetProcessInfo(std::string& PN) {
 	ULONG buffer_size = 512 * 512;
 
 	NTSTATUS Status = STATUS_INFO_LENGTH_MISMATCH;
-	_ntQSI fpQSI = (_ntQSI)GetProcAddress(GetModuleHandle(TEXT(xors("ntdll.dll"))), (xors("NtQuerySystemInformation")));
+	_ntQSI fpQSI = (_ntQSI)GetProcAddress(GetModuleHandle(TEXT(xorstr("ntdll.dll"))), (xorstr("NtQuerySystemInformation")));
 
 
 	buffer = VirtualAlloc(NULL, buffer_size, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
@@ -80,7 +80,7 @@ Process::Process_INFO Process::GetProcessInfo(std::string& PN) {
 
 					Pinfo.Process_Name = ProcessName;
 					CHAR szTemp[MAX_PATH] = { 0 };
-					sprintf_s(szTemp, (xors("%I64d")), (inf->CreateTime).QuadPart);
+					sprintf_s(szTemp, (xorstr("%I64d")), (inf->CreateTime).QuadPart);
 					Pinfo.Create_Time = szTemp;
 					Pinfo.ThreadCount = inf->NumberOfThreads;
 					Pinfo.HandleCount = inf->HandleCount;
@@ -152,7 +152,7 @@ BOOL Process::RemoveDLL(DWORD PID, std::wstring DLLtoRemove, int ListType) {
 
 	PROCESS_BASIC_INFORMATION PBI = { 0 };
 	HANDLE ProcessHandle = OpenProcess(PROCESS_ALL_ACCESS, false, PID);
-	NtQIP = (pNtQueryInformationProcess)GetProcAddress(GetModuleHandle(TEXT(xors("ntdll.dll"))), (xors("NtQueryInformationProcess")));
+	NtQIP = (pNtQueryInformationProcess)GetProcAddress(GetModuleHandle(TEXT(xorstr("ntdll.dll"))), (xorstr("NtQueryInformationProcess")));
 	status = NT_SUCCESS(NtQIP(ProcessHandle, ProcessBasicInformation, &PBI, sizeof(PROCESS_BASIC_INFORMATION), NULL));
 
 	if (status) {
@@ -327,7 +327,7 @@ void Process::ListModules(DWORD PID, int ListType, int Order) {
 
 	PROCESS_BASIC_INFORMATION PBI = { 0 };
 	HANDLE ProcessHandle = OpenProcess(PROCESS_ALL_ACCESS, false, PID);
-	NtQIP = (pNtQueryInformationProcess)GetProcAddress(GetModuleHandle(TEXT(xors("ntdll.dll"))), (xors("NtQueryInformationProcess")));
+	NtQIP = (pNtQueryInformationProcess)GetProcAddress(GetModuleHandle(TEXT(xorstr("ntdll.dll"))), (xorstr("NtQueryInformationProcess")));
 	status = NT_SUCCESS(NtQIP(ProcessHandle, ProcessBasicInformation, &PBI, sizeof(PROCESS_BASIC_INFORMATION), NULL));
 
 	if (status) {
